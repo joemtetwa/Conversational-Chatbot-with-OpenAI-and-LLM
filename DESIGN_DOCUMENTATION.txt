@@ -1,0 +1,203 @@
+Professional Profile Builder Chatbot - Design Documentation
+=====================================================
+
+1. Architecture Overview
+-----------------------
+The application follows a modular architecture with clear separation of concerns:
+- GUI Layer: User interface and interaction handling
+- Business Logic Layer: Profile and session management
+- Data Processing Layer: NLP and AI-powered text processing
+- Data Storage Layer: Session and profile persistence
+
+2. Module Details
+----------------
+
+2.1 GUI Module (gui.py)
+----------------------
+Purpose: Provides the graphical user interface for the chatbot.
+
+Key Components:
+a) Main Window Layout
+   - Three-panel design for optimal information display
+   - Left panel: Chat interface
+   - Right top panel: Profile details
+   - Right bottom panel: Profile controls and completion metrics
+
+b) Chat Interface
+   - Scrollable chat history display
+   - Input field with real-time processing
+   - Send button positioned for easy access
+   - Session information display
+
+c) Profile Visualization
+   - Tabbed interface for organized data display
+   - Sections:
+     * Basic Info (name, age, location)
+     * Education (degree, institution, graduation year)
+     * Experience (current role, company)
+     * Skills (technical, tools, soft skills)
+     * Additional Info (languages, certifications)
+   - Real-time updates as information is provided
+
+d) Profile Controls
+   - Completion progress bar
+   - Visual feedback on profile completeness
+   - Clean, intuitive control layout
+
+Design Choices:
+- Dark theme for reduced eye strain
+- Gold accent colors for professional appearance
+- Consistent font usage (Consolas for monospace clarity)
+- Responsive layout with proper spacing
+- Grid-based component organization
+
+2.2 Profile Manager (profile_manager.py)
+--------------------------------------
+Purpose: Handles all profile-related operations and data management.
+
+Key Components:
+a) Profile Structure
+   - UserProfile class with comprehensive field definitions
+   - Structured data organization
+   - Type hints for better code maintainability
+
+b) Input Processing
+   - Multi-strategy input recognition
+   - Fallback mechanisms for each field
+   - Flexible data extraction methods
+
+c) Field Processing
+   - Degree recognition with abbreviation support
+   - Institution handling with location context
+   - Year validation and normalization
+   - Skills categorization and mapping
+
+d) Validation System
+   - Data type validation
+   - Range checking for numerical fields
+   - Format validation for specific fields
+   - Error reporting mechanism
+
+2.3 Session Manager (session_manager.py)
+--------------------------------------
+Purpose: Manages chat sessions and maintains conversation state.
+
+Key Components:
+a) Session Handling
+   - Unique session identification using UUID
+   - Session creation and termination
+   - State persistence between interactions
+
+b) Message Management
+   - Conversation history tracking
+   - Message timestamping
+   - Role-based message organization
+
+c) Profile Association
+   - Session-profile linking
+   - Profile state management
+   - Data persistence handling
+
+2.4 Profile Summarizer (profile_summarizer.py)
+-------------------------------------------
+Purpose: Generates human-readable summaries of profile information.
+
+Key Components:
+a) Summary Generation
+   - Context-aware text generation
+   - Professional language formatting
+   - Highlight selection logic
+
+b) Integration
+   - OpenAI API integration
+   - Error handling and fallback mechanisms
+   - Response processing and formatting
+
+3. Data Flow
+-----------
+1. User Input → GUI
+2. GUI → Session Manager (session context)
+3. Session Manager → Profile Manager (data extraction)
+4. Profile Manager → NLP Processing (intent/entity recognition)
+5. Profile Manager → Profile Update
+6. Profile Update → GUI Refresh
+7. GUI → User Feedback
+
+4. Enhancement History
+--------------------
+
+4.1 Input Processing Improvements
+- Enhanced GPT prompts for better understanding
+- Added regex-based fallback mechanisms
+- Implemented multi-method input recognition
+- Added context-aware parsing
+
+4.2 User Interface Enhancements
+- Simplified chat interface
+- Improved profile visualization
+- Added real-time completion tracking
+- Enhanced visual feedback
+- Streamlined control layout
+
+4.3 Session Management Updates
+- Implemented UUID-based session tracking
+- Added session persistence
+- Improved error recovery
+- Enhanced state management
+
+4.4 Profile Management Improvements
+- Added comprehensive field validation
+- Enhanced data type handling
+- Improved error reporting
+- Added profile completion metrics
+
+5. Security Considerations
+------------------------
+- API key management through .env
+- Input sanitization
+- Session isolation
+- Error message sanitization
+- Data validation at multiple levels
+
+6. Performance Optimizations
+--------------------------
+- Asynchronous profile updates
+- Efficient session management
+- Optimized GUI updates
+- Memory usage optimization
+- Response time improvements
+
+7. Error Handling
+---------------
+- Comprehensive exception handling
+- User-friendly error messages
+- Graceful degradation
+- Recovery mechanisms
+- Logging system
+
+8. Future Enhancements
+--------------------
+- Multi-language support
+- Advanced skill matching
+- External API integrations
+- Enhanced data validation
+- Profile export options
+- Advanced summarization features
+
+9. Testing Considerations
+-----------------------
+- Unit test framework
+- Integration testing
+- GUI testing
+- Error scenario testing
+- Performance testing
+
+10. Maintenance Guidelines
+------------------------
+- Code documentation standards
+- Module organization
+- Dependency management
+- Version control practices
+- Update procedures
+
+This documentation provides a comprehensive overview of the design choices and implementations in the Professional Profile Builder Chatbot. It serves as a reference for understanding the system architecture and future development.
